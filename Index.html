@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>なぜ始めたか | 有明海苔残渣活用プロジェクト</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;900&family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1410;
+      --sea-deep: #0a2a3d;
+      --sea-mid: #1a4a6b;
+      --sea-light: #2e7ea8;
+      --sea-pale: #a8d4e8;
+      --nori: #1e3a2f;
+      --nori-light: #2d5c45;
+      --sand: #e8dcc8;
+      --cream: #f5f0e8;
+      --gold: #b8933a;
+      --rust: #8b3a2a;
+    }
+
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 8vw;
+  background: var(--sea-deep);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(46,126,168,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(30,58,47,0.3) 0%, transparent 50%);
+}
+
+/* 波のアニメーション */
+.wave-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  opacity: 0.06;
+}
+
+.wave-bg svg { width: 200%; height: 100%; animation: waveScroll 18s linear infinite; }
+
+@keyframes waveScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 縦書き装飾テキスト */
+.hero-vertical {
+  position: absolute;
+  right: 8vw;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  font-weight: 400;
+  color: rgba(168,212,232,0.3);
+  letter-spacing: 0.4em;
+  line-height: 2;
+}
+
+.hero-eyebrow {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  color: var(--sea-pale);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  animation: fadeUp 1s ease both;
+}
+
+.hero-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1s 0.2s ease both;
+}
+
+.hero-title span {
+  display: block;
+  color: var(--sea-pale);
+  font-size: 0.52em;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-top: 0.6rem;
+}
+
+.hero-line {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 2.5rem 0;
+  animation: expandLine 1s 0.5s ease both;
+}
+
+@keyframes expandLine {
+  from { width: 0; opacity: 0; }
+  to { width: 60px; opacity: 1; }
+}
+
+.hero-sub {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 300;
+  color: rgba(245,240,232,0.75);
+  max-width: 520px;
+  line-height: 2.1;
+  animation: fadeUp 1s 0.4s ease both;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeUp 1s 1s ease both;
+}
+
+.scroll-hint span {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(168,212,232,0.5);
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(168,212,232,0.5), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.5; }
+  50% { transform: scaleY(0.5); opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 8vw, 10rem);
+}
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  color: var(--sea-light);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--sea-light);
+}
+
+.section-heading {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sea-deep);
+  margin-bottom: 3rem;
+}
+
+/* ── INTRO SECTION ── */
+.intro {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .intro { grid-template-columns: 1fr; }
+  .hero-vertical { display: none; }
+}
+
+.intro-text p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  font-weight: 300;
+  line-height: 2.3;
+  color: #3a3530;
+  margin-bottom: 1.6rem;
+}
+
+.intro-text p strong {
+  font-weight: 600;
+  color: var(--sea-deep);
+}
+
+.intro-visual {
+  position: relative;
+}
+
+.sea-stat-card {
+  background: var(--sea-deep);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sea-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--sea-light));
+}
+
+.sea-stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(46,126,168,0.12);
+}
+
+.stat-item {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item:last-child { margin-bottom: 0; }
+
+.stat-number {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--sea-pale);
+  line-height: 1;
+}
+
+.stat-unit {
+  font-size: 0.7em;
+  font-weight: 400;
+  margin-left: 0.2em;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(168,212,232,0.7);
+  letter-spacing: 0.1em;
+  margin-top: 0.4rem;
+}
+
+.stat-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(168,212,232,0.15);
+  margin: 1.5rem 0;
+}
+
+/* ── PROBLEM SECTION ── */
+.problem {
+  background: var(--nori);
+  color: white;
+}
+
+.problem .section-label { color: var(--sea-pale); }
+.problem .section-label::after { background: var(--sea-pale); }
+.problem .section-heading { color: white; }
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.problem-card {
+  border: 1px solid rgba(168,212,232,0.15);
+  padding: 2rem;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.problem-card:hover { border-color: rgba(168,212,232,0.4); }
+
+.problem-number {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(168,212,232,0.1);
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  line-height: 1;
+}
+
+.problem-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.problem-card h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sea-pale);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.problem-card p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 2;
+  color: rgba(245,240,232,0.65);
+}
+
+/* ── MOTIVATION SECTION ── */
+.motivation {
+  background: #f8f4ed;
+  position: relative;
+  overflow: hidden;
+}
+
+.motivation::before {
+  content: '想い';
+  position: absolute;
+  right: -0.05em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(10rem, 22vw, 20rem);
+  font-weight: 900;
+  color: rgba(10,42,61,0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.motivation-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 720px;
+}
+
+.motivation-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .motivation-item { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+.motivation-index {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--sea-pale);
+  line-height: 1;
+  padding-top: 0.15em;
+}
+
+.motivation-body h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--sea-deep);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.motivation-body p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(0.88rem, 1.5vw, 1rem);
+  font-weight: 300;
+  line-height: 2.3;
+  color: #4a4540;
+}
+
+.motivation-body p em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--sea-deep);
+  border-bottom: 1px solid var(--sea-light);
+  padding-bottom: 0.1em;
+}
+
+/* ── QUOTE SECTION ── */
+.quote-section {
+  background: var(--sea-deep);
+  padding: clamp(5rem, 10vw, 9rem) clamp(2rem, 10vw, 14rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -0.3em;
+  left: 0.1em;
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(15rem, 30vw, 28rem);
+  color: rgba(168,212,232,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+
+blockquote {
+  position: relative;
+  z-index: 1;
+}
+
+blockquote p {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.9;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+blockquote p span {
+  color: var(--sea-pale);
+}
+
+blockquote cite {
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(168,212,232,0.5);
+}
+
+/* ── VISION SECTION ── */
+.vision {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .vision { grid-template-columns: 1fr; }
+}
+
+.vision-text p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  font-weight: 300;
+  line-height: 2.3;
+  color: #3a3530;
+  margin-bottom: 1.6rem;
+}
+
+.vision-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.flow-item {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.flow-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.flow-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sea-light);
+  flex-shrink: 0;
+  margin-top: 0.35em;
+}
+
+.flow-line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(to bottom, var(--sea-light), rgba(46,126,168,0.2));
+  margin: 4px 0;
+  min-height: 2rem;
+}
+
+.flow-item:last-child .flow-line { display: none; }
+
+.flow-body {
+  padding-bottom: 2.5rem;
+}
+
+.flow-body h4 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sea-deep);
+  margin-bottom: 0.5rem;
+}
+
+.flow-body p {
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #5a5550;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: rgba(245,240,232,0.4);
+  padding: 3rem clamp(1.5rem, 8vw, 10rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+footer .brand {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(245,240,232,0.7);
+  letter-spacing: 0.1em;
+}
+
+footer p {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+/* ── FADE IN OBSERVER ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="wave-bg">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 100 C240 40 480 160 720 100 C960 40 1200 160 1440 100 L1440 200 L0 200Z" fill="white"/>
+      <path d="M0 130 C360 70 720 190 1080 130 C1260 100 1380 150 1440 130 L1440 200 L0 200Z" fill="white"/>
+    </svg>
+  </div>
+
+  <div class="hero-vertical">有明海苔残渣活用プロジェクト　2026年始動</div>
+
+  <p class="hero-eyebrow">有明海苔残渣活用プロジェクト</p>
+  <h1 class="hero-title">
+    なぜ、<br>始めたのか。
+    <span>The Story Behind This Project</span>
+  </h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">
+    海の恵みを、余すことなく活かしたい。<br>
+    クリークを、もう一度澄んだ水に戻したい。<br>
+    そして、続けられる事業として。
+  </p>
+
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+
+<section class="intro">
+  <div class="intro-text fade-in">
+    <p class="section-label">BACKGROUND</p>
+    <h2 class="section-heading">有明海が育む<br>「もったいない」</h2>
+    <p>
+      有明海は日本最大の干潟を持つ、豊かな内湾です。<strong>日本全国の海苔生産量の約半分</strong>がこの海で育まれています。
+    </p>
+    <p>
+      しかし、海苔の加工工程で毎年発生する大量の残渣と排水は、長年ほぼ未処理のままクリークへ流されてきました。
+      冬の漁期4ヶ月間、毎年繰り返されてきた光景です。
+      残渣にはフコイダン・アルギン酸・アミノ酸など、有明海が海苔に蓄えた<strong>価値ある成分が含まれている可能性</strong>があります。
+      それをただ流し続けることへの長年の違和感が、このプロジェクトの出発点です。
+    </p>
+    <p>
+      さらに、栄養成分が凝縮された排水がクリークへ流れ込み続けることへの懸念もあります。
+      富栄養化した水域では酸素が失われ、嫌気状態で硫化水素などの有害物質が生じる可能性があることは知られています。
+      <strong>この排水が環境に何らかの悪影響を与えているかもしれない</strong>——その思いも、未処理排出をやめる取り組みを後押ししています。
+    </p>
+  </div>
+
+  <div class="intro-visual fade-in">
+    <div class="sea-stat-card">
+      <div class="stat-item">
+        <div class="stat-number">約<span style="font-size:0.7em">半分</span></div>
+        <div class="stat-label">国内ノリ生産量に占める有明海の割合</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number">4<span class="stat-unit">ヶ月</span></div>
+        <div class="stat-label">冬季の加工排水がクリークへ流れ込む期間</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.6rem; color: rgba(168,212,232,0.8);">フコイダン<br>アルギン酸<br>アミノ酸</div>
+        <div class="stat-label">残渣に含有が期待される主要成分</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+
+<section class="problem">
+  <p class="section-label">THE CHALLENGE</p>
+  <h2 class="section-heading">有明海が抱える<br>課題の複合性</h2>
+
+  <div class="problem-grid">
+    <div class="problem-card fade-in">
+      <div class="problem-number">01</div>
+      <div class="problem-icon">🌊</div>
+      <h3>環境の悪化</h3>
+      <p>干拓事業の進行と干潟の消失により、有明海の水質は長期的に悪化しています。赤潮の多発、貧酸素の出現など、かつて「宝の海」と呼ばれた海の生態系が脅かされています。</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-number">02</div>
+      <div class="problem-icon">🏞️</div>
+      <h3>クリークの汚濁</h3>
+      <p>かつて清流だったクリークは、農業・生活・加工排水などの複合的な要因で水質が悪化。農業用水路として地域を支えてきたクリークの生態が、大きく変わってしまいました。</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-number">03</div>
+      <div class="problem-icon">📉</div>
+      <h3>ノリ産業の苦境</h3>
+      <p>全国のノリ生産量はピーク時の100億枚超から65億枚台へと減少。赤潮による色落ち、栄養塩不足、温暖化による水温上昇など、養殖環境は年々厳しくなっています。</p>
+    </div>
+    <div class="problem-card fade-in">
+      <div class="problem-number">04</div>
+      <div class="problem-icon">⚠️</div>
+      <h3>加工排水と環境への<br>懸念</h3>
+      <p>栄養成分が凝縮された加工排水がクリークに流れ込み続けることで、富栄養化が進み酸素が失われる可能性があります。嫌気状態では硫化水素などの有害物質が発生し、生物に悪影響を及ぼすことも考えられます。現状を正確に把握するための<strong style="color:var(--sea-pale)">成分測定と排水処理の取り組み</strong>が、このプロジェクトの重要な柱のひとつです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- MOTIVATION -->
+
+<section class="motivation">
+  <p class="section-label">OUR WHY</p>
+  <h2 class="section-heading fade-in">3つの「なぜ」</h2>
+
+  <div class="motivation-items">
+    <div class="motivation-item fade-in">
+      <div class="motivation-index">01</div>
+      <div class="motivation-body">
+        <h3>もったいない、という原点</h3>
+        <p>
+          毎年冬になると、大量の残渣と排水がクリークへ流れていく。それがずっと<em>もったいなかった</em>。
+          価値があるかもしれないものを、可能性すら確かめずに流し続けてきた——
+          まずその事実に向き合うことが、このプロジェクトの第一歩です。
+          「測定してから判断する」という慎重なアプローチも、思いつきではなく、
+          <em>本当に価値があるなら、きちんと証明してから動く</em>という誠実さの表れです。
+        </p>
+      </div>
+    </div>
+
+```
+<div class="motivation-item fade-in">
+  <div class="motivation-index">02</div>
+  <div class="motivation-body">
+    <h3>一度も「綺麗な」クリークを見たことがない</h3>
+    <p>
+      生まれた時には、クリークはすでに濁っていた。<em>かつては豊かで澄んでいた</em>と聞く水環境を、自分はまだ一度も見たことがない。
+      その風景を、自分の手で少しでも取り戻せないか——加工排水をそのまま流し続けることをやめることが、その第一歩になるかもしれない。
+      有明海とこの地域への貢献という想いが、このプロジェクトの根底にあります。
+    </p>
+  </div>
+</div>
+
+<div class="motivation-item fade-in">
+  <div class="motivation-index">03</div>
+  <div class="motivation-body">
+    <h3>続けるために、収益が必要</h3>
+    <p>
+      理想だけでは続かない。<em>この活動を継続するには、収益を生み出す仕組みが必要</em>だ。
+      環境への貢献と事業としての持続可能性は、どちらかを選ぶものではなく、両立させなければ意味がない。
+      残渣に含まれる成分の価値を正しく測定し、産業につなげていくのはそのためでもある。
+    </p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- QUOTE -->
+
+<section class="quote-section">
+  <blockquote class="fade-in">
+    <p>
+      捨てるものを活かす。<br>
+      クリークを<span>もう一度、綺麗に</span>したい。<br>
+      そして、<span>続けられる事業</span>にする。
+    </p>
+    <cite>——この3つが、このプロジェクトの出発点</cite>
+  </blockquote>
+</section>
+
+<!-- VISION -->
+
+<section class="vision">
+  <div class="vision-text fade-in">
+    <p class="section-label">HOW WE PROCEED</p>
+    <h2 class="section-heading">測定から始める<br>誠実なアプローチ</h2>
+    <p>
+      思いつきで動かない。残渣に何が含まれているのかを<strong>まず正しく測定する</strong>ことから始めます。
+      データが出る前に「こう使おう」と決めてしまうのではなく、成分の事実に基づいて可能性を絞り込む。
+    </p>
+    <p>
+      農業肥料・化粧品原料・昆虫飼料・機能性食品——4つの可能性すべてを保持したまま測定に臨み、
+      データが答えを教えてくれた段階で次のステップへ進みます。
+    </p>
+    <p>
+      有明高専・坪根先生が開発した動力不要の分離装置との連携により、
+      固形分の安定取得プロセスの確立も進めています。
+    </p>
+  </div>
+
+  <div class="vision-flow fade-in">
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot" style="background: var(--gold);"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-body">
+        <h4>STEP 1｜残渣サンプル採取・成分測定</h4>
+        <p>今季の加工残渣を採取・冷凍保存。フコイダン・アミノ酸・ミネラル・塩分・有機物量を測定。すべての判断の根拠データを確保する。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-body">
+        <h4>STEP 2｜測定結果の読み解きと優先領域の決定</h4>
+        <p>フコイダン含有量・アミノ酸・塩分などの数値をもとに、今年度動く領域を1〜2つに絞り込む。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-body">
+        <h4>STEP 3｜小規模実証・外部連携の開始</h4>
+        <p>最小コストで実証データを取得。外部連携先との交渉も、主導権・ブランド所有権を保持した条件で進める。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot" style="background: var(--nori-light);"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-body">
+        <h4>STEP 4｜事業化シナリオの策定</h4>
+        <p>試験データをもとに参入領域を確定。収益モデル・投資額・回収期間を試算し、次年度の本格稼働へ。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-left">
+        <div class="flow-dot" style="background: var(--sea-pale);"></div>
+        <div class="flow-line"></div>
+      </div>
+      <div class="flow-body">
+        <h4>継続｜周辺環境の定点観測</h4>
+        <p>「取り組みによって、本当に環境は変わったのか」——その問いに、数値で答えていきます。排水処理の導入<strong style="color: var(--sea-deep)">前と後</strong>で、周辺クリークの水質・土質を同じ地点で継続的に測定・記録。変化があれば正直に、なければそれも正直に。自分たちの活動が地域の環境にどう作用しているかを、長期的に見届けていく取り組みです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="brand">有明海苔残渣活用プロジェクト</div>
+  <p>© 2026 Ariake Nori Project. v1.0</p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
